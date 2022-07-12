@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div style="display: flex">
     <Datepicker
       :value="date_disp"
       :format="date_format"
       @input="dateHandler"
     ></Datepicker>
+    <p>&nbsp;</p>
     <VueTimepicker
       v-model="time_disp"
       :format="time_format"
