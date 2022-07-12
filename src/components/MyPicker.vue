@@ -26,7 +26,7 @@ export default {
       time_format: "HH:mm",
       time_disp: { HH: "", mm: "" },
       disp_time2: "",
-      child_item: { y_d: "", mon_d: "", d_d: "", h_d: "", min_d: "" },
+      child_item: { year: "", month: "", date: "", hour: "", min: "" },
     };
   },
   components: {
@@ -35,28 +35,27 @@ export default {
   },
   methods: {
     get_para(arg) {
-      let year_d = arg.getFullYear();
+      let year_d = String(arg.getFullYear());
       let month_d = arg.getMonth();
       let date_d = arg.getDate();
       let hour_d = arg.getHours();
       let min_d = arg.getMinutes();
-      this.date_disp =
-        year_d + "-" + ("00" + (month_d + 1)).slice(-2) + "-" + date_d;
-      this.time_disp.HH = "" + ("00" + hour_d).slice(-2);
-      this.time_disp.mm = "" + ("00" + min_d).slice(-2);
+      this.date_disp = year_d + "-" + (month_d + 1) + "-" + date_d;
+      this.time_disp.HH = String(hour_d);
+      this.time_disp.mm = String(min_d);
     },
     day_time_pick: function (child_item) {
       this.$emit("update", child_item);
     },
     dateHandler(arg) {
-      this.child_item.y_d = arg.getFullYear();
-      this.child_item.mon_d = arg.getMonth() + 1;
-      this.child_item.d_d = arg.getDate();
+      this.child_item.year = String(arg.getFullYear());
+      this.child_item.month = String(arg.getMonth() + 1);
+      this.child_item.date = String(arg.getDate());
       this.$emit("update", this.child_item);
     },
     timeHandler(arg) {
-      this.child_item.h_d = arg.data.HH;
-      this.child_item.min_d = arg.data.mm;
+      this.child_item.hour = String(arg.data.HH);
+      this.child_item.min = String(arg.data.mm);
       this.$emit("update", this.child_item);
     },
   },
